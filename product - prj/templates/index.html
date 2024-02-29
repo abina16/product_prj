@@ -1,0 +1,89 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Landing Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <header id="header">
+        <nav id="nav-bar">
+            <ul>
+                <li><a class="nav-link" href="#about">About</a></li>
+                <li><a class="nav-link" href="#ingredients">Ingredients</a></li>
+                <li><a class="nav-link" href="#menu">Special</a></li>
+                <li><a class="nav-link" href="#contact">Contact us</a></li>
+                <li><a class="nav-link" href="#reservation">Reservation</a></li>
+            </ul>
+        </nav>
+        <hr>
+    </header>
+    <main>
+        <section id="introduction">
+            <img alt='shop picture' src="https://images.edrawmind.com/article/swot-analysis-of-coffee-shop/1200_800.jpg">
+        </section>
+        <section id="about">
+            <p>
+                Taste and See Coffee Shop and Gallery offers a unique coffee house environment unlike any other in Macon. We are not only a place to drop in and get your morning cup of coffee (although you are more than welcome to do that), we are a place where you can sit down and enjoy that tailor-made cup of coffee. If you need to work, we have a seating area created specifically for you. If you need to rest, we have a soft-seating area in front of a stone fire place that is perfect for your weary mind and body. We offer a delicious variety of coffee from Safehouse Coffee made by our professionally trained baristas. We have everything from classic coffee to our house made specialty beverages.  All of our sauces & syrups are made in-house with all natural ingredients (no chemicals or preservatives) ensuring you the highest quality in taste & health.  You can complete your coffee with one of our delicious sweet treats made by our very own baker. We look forward to serving you at Taste & See Coffee Shop and Gallery!</p>
+        </section>
+        <section id="ingredients">
+            <iframe id="video" src="https://youtube.com/embed/Ly84ggFNTv4"></iframe>
+        </section>
+        <section id="menu">
+            <article id="sec1">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6lhZrdLxFOmBZ2eu0g65MJpBUc54ohH0RY08xb2gFN_4WEDwwkh0cmHJwrUkJct4tNyU&usqp=CAU">
+                <h3>Latte coffee</h3>
+            </article>
+            <article class="sec2">
+                <img src="https://theloopywhisk.com/wp-content/uploads/2021/03/Coffee-Cake-Cappuccino-Frosting_730px-8.jpg.webp">
+                <h3>Cappuccino coffee cake</h3>
+            </article>
+            <article class="sec3">
+                <img src="https://www.nespresso.com/ncp/res/uploads/recipes/nespresso-recipes-Latte-Art-Tulip.jpg">
+                <h3>Coffee</h3>
+            </article>
+        </section>
+        <section id="reservation">
+            <h1>Make a Reservation</h1>
+            <form action="/reserve" method="post">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br>
+        
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required><br>
+        
+                <label for="time">Time:</label>
+                <input type="time" id="time" name="time" required><br>
+        
+                <label for="guests">Number of Guests:</label>
+                <input type="number" id="guests" name="guests" min="1" required><br>
+        
+                <input type="submit" value="Reserve Now">
+            </form>
+            {% if reservation_status %}
+                <script>
+                    alert("{{ reservation_status }}");
+                </script>
+            {% endif %}
+            {% if busy_times_plot %}
+                <img src="data:image/png;base64,{{ busy_times_plot }}" alt="Busy Times Plot">
+            {% endif %}
+        </section>
+        <section id="contact">
+            <h1>Contact Us</h1>
+            <form action="/submit-email" method="post">
+                <label for="email">Enter your Email id:</label>
+                <input id="email" type="email" placeholder="Email" name="email" required><br>
+                <input type="submit" id="submit" value="SEND">
+            </form>
+            {% if email_status %}
+                <script>
+                    alert("Thank You for Contacting Us!");
+                </script>
+            {% endif %}
+        </section>
+    </main>
+</body>
+</html>
